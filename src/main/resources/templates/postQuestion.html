@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Post Question Page</title>
+</head>
+<body>
+<div align="center" style="color: cornflowerblue">
+    <h3>Ask A Question</h3>
+
+    <form th:action="@{/submitQuestion}" th:object="${question}">
+	<table>
+	<tr>
+	<td>
+			<label for="subject">Title: </label>
+	</td>
+	<td>
+			<input type="text"  name="subject" id="subject" size="100" style="border-color:cornflowerblue;"
+                           th:field="*{questionTitle}" required>
+	</td>
+	</tr>
+    <tr>
+        <td> <label for="description">Description: </label></td>
+         <td> <textarea name="Description" id="Description" rows="10" cols="89"  style="border-color: cornflowerblue"
+                              th:field="*{questionText}"> </textarea>
+         </td>
+    </tr>
+    </table>
+        <br/>
+        <div>
+        <input type="submit" value="Submit" style="width: 100px;height:25px;margin-left: 580px;background-color:cornflowerblue">
+        </div>
+    </form>
+</div>
+</body>
+</html>

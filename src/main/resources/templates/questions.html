@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        a:link, a:visited {
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>QuestionMark</title>
+</head>
+<body>
+
+<table>
+    <form th:action="@{/search/text}" method="get">
+        <tr>
+            <td>
+                <input type="text"  th:name="searchText" name="searchText" placeholder="search for questions..." size="30">
+                <button type="submit">Search</button>
+            </td>
+        </tr>
+        <tr>
+            <td><h3>Questions List</h3></td>
+            <td>
+                <div align="center">
+                    <input type="submit" name="postQuestion" value="Post Question">
+                </div>
+            </td>
+        </tr>
+        <tr th:each="q,state:${questionlist}">
+            <td>
+                <div class="container">
+                    <div class="row">
+                        <a th:href="@{/question/{questionId}(questionId=${q.questionId})}"
+                           th:text="${q.questionTitle}"> </a>
+                        <hr>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </form>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page</title>
+    <style>
+        a:link{
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover{
+            text-decoration: underline;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+
+    <br />
+    <h1>Welcome to QuestionMark!</h1><br/>
+    <h2><a th:href="@{/register}">Register</a></h2><br/>
+    <h2><a th:href="@{/login}">Login</a></h2>
+</div>
+</body>
+</html>

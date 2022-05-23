@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>QuestionMark</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/jquery/jquery.min.js} "/>
+    <link th:rel="stylesheet" th:href="@{/webjars/popper.js/umd/popper.min.js} "/>
+</head>
+<body>
+    <div align="left">
+        <a th:href="@{/redirect}">Go back to Questions</a>
+    </div>
+    <div class="container" style="margin-left: 10%">
+        <h4 th:text="${question.getQuestionTitle()}"></h4>
+        <p th:text="${question.getQuestionText()}"></p>
+        <div class="row">
+        <label>Question posted by: </label>
+        <label th:text="${question.getUsername()}"></label>
+        <label th:text="${question.getVotes()}"></label>
+            <form method="post" th:action="@{'/questionVote/' + ${question.getQuestionId()}}">
+                <button class="btn btn-primary" type="submit" name="action" value="up">Up Vote</button>
+                <button class="btn btn-primary" type="submit" name="action" value="down">Down Vote</button>
+            <br/>
+            </form>
+        </div>
+        <hr>
+        <div class="container">
+            <div class="row">
+                    <form method="post" th:action="@{/submitAnswer}" th:object="${answer}">
+                        <label for="content">Post your answer:</label>
+                        <div class="form-group">
+                            <textarea type="text" rows="4" id="content" name="content" placeholder="Content" class="form-control"
+                                      th:field="*{answerText}" autocomplete="off"></textarea>
+                            <input type="hidden" th:field="*{questionId}">
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Submit form</button>
+                    </form>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <label>Other answers</label>
+            <div class="form-group">
+                <table name="allAnswersTable" cellpadding="0" cellspacing="10">
+                    <tr th:each="answer :${answers}">
+                        <td><p th:text="${answer.answerText}"></p></td>
+                        <td><label>Answered by: </label><label th:text="${answer.username}"></label></td>
+                        <td>
+                        <form method="post" th:action="@{'/answerVote/' +${answer.getQuestionId()}+'/'+ ${answer.getAnswerId()}}">
+                            <button class="btn btn-primary" type="submit" name="action" value="up">Up Vote</button>
+                            <button class="btn btn-primary" type="submit" name="action" value="down">Down Vote</button>
+                        </form>
+                        </td>
+                        <td th:text="${answer.votes}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/assets/summernote/summernote-bs4.js}"></script>
+
+    <script>
+        $('#content').summernote({
+            height: 200
+        });
+    </script>
+</body>
+</html>

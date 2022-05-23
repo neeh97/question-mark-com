@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>QuestionMark</title>
+</head>
+<body>
+<div class="row">
+    <label>Welcome </label>
+    <label th:text="${user.getUsername()}"></label>
+</div>
+<div align="center">
+    <h3>Have a Question, or want to answer any question</h3>
+    <form  th:action="@{/userAction}">
+        <input type="submit" name="seeQuestions" value="See Questions">
+        <input type="submit" name="postQuestion" value="Post Question">
+    </form>
+</div>
+</body>
+</html>

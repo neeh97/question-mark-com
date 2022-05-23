@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Register Page</title>
+        <style>
+            input[type=text], input[type=password] {
+                width: 100%;
+                padding: 15px;
+                margin-bottom: 10px;
+                margin-top: 10px;
+                border: none;
+                background: #f1f1f1;
+            }
+            input[type=text]:focus, input[type=password]:focus {
+                background-color: #ddd;
+                outline: none;
+            }
+            label{
+                vertical-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div align="center">
+            <h3>Registration Page</h3>
+
+            <form th:action="@{/registerUser}" th:object="${user}" th:method="post">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="email">Email ID: </label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{email}" name="email" id="email" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="countrycode">Country Code: </label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{countryCode}" name="countrycode" id="countrycode" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="mobno">Mobile No: </label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{mobileNo}" name="mobno" id="mobno" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="password">Password: </label>
+                        </td>
+                        <td>
+                            <input type="password" th:field="*{password}" name="password" id="password" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="confirmpassword">Confirm Password: </label>
+                        </td>
+                        <td>
+                            <input type="password" th:name="confirmpassword" id="confirmpassword" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="username">Username: </label>
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{username}" name="username" id="username" required>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </body>
+</html>

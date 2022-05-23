@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <style>
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            border: none;
+            background: #f1f1f1;
+        }
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+        label{
+            vertical-align: center;
+        }
+        a:link{
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover{
+            text-decoration: underline;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <h1>Login</h1>
+    <br />
+    <form action="#" th:action="@{/loginAction}" th:object="${user}"
+          method="post">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" th:field="*{email}" /></td>
+                <td><span  th:if="${invalidLogin== 0}" style="color:red">Invalid Credentials</span></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" th:field="*{password}" /></td>
+                <td><span  th:if="${invalidLogin== 0}" style="color:red">Invalid Credentials</span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit">Login</button> </td>
+                <td><a th:href="@{/register}">No user account? Click here to sign up!</a></td>
+
+            </tr>
+
+        </table>
+    </form>
+
+</div>
+</body>
